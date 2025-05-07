@@ -2,6 +2,21 @@
 
 Learn Go Rest API from Programmer Zaman Now
 
+## Database
+
+- SQL Queries
+
+```sql
+-- Create Table
+create table category(
+  id integer primary key auto_increment,
+  name varchar(255) not null
+) engine = InnoDB;
+
+-- Select all categories
+select * from category;
+```
+
 ## Source
 
 - [MySql driver repository](https://github.com/go-sql-driver/mysql)

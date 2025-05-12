@@ -21,11 +21,11 @@ func main() {
 
 	router := httprouter.New()
 
-	router.GET("/api/v1/categories", categoryController.FindAll)
-	router.GET("/api/v1/categories/:categoryId", categoryController.FindById)
-	router.POST("/api/v1/categories", categoryController.Create)
-	router.PUT("/api/v1/categories/:categoryId", categoryController.Update)
-	router.DELETE("/api/v1/categories/:categoryId", categoryController.Delete)
+	router.GET("/api/categories", categoryController.FindAll)
+	router.GET("/api/categories/:categoryId", categoryController.FindById)
+	router.POST("/api/categories", categoryController.Create)
+	router.PUT("/api/categories/:categoryId", categoryController.Update)
+	router.DELETE("/api/categories/:categoryId", categoryController.Delete)
 
 	server := http.Server{
 		Addr:    "localhost:3000",

@@ -67,7 +67,7 @@ func (service *CategoryServiceImpl) Delete(ctx context.Context, categoryId int) 
 	category, err := service.CategoryRepository.FindById(ctx, tx, categoryId)
 	helper.PanicIfError(err)
 
-	service.CategoryRepository.Save(ctx, tx, category)
+	service.CategoryRepository.Delete(ctx, tx, category)
 }
 
 func (service *CategoryServiceImpl) FindById(ctx context.Context, categoryId int) web.CategoryResponse {

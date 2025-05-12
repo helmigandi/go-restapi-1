@@ -19,7 +19,7 @@ func NewCategoryController(categoryService service.CategoryService) CategoryCont
 	}
 }
 
-func (c CategoryControllerImpl) Create(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+func (c *CategoryControllerImpl) Create(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
 	createRequest := web.CategoryCreateRequest{}
 	helper.ReadFromRequestBody(r, &createRequest)
 
@@ -34,7 +34,7 @@ func (c CategoryControllerImpl) Create(w http.ResponseWriter, r *http.Request, p
 	helper.WriteToResponseBody(w, response)
 }
 
-func (c CategoryControllerImpl) Update(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+func (c *CategoryControllerImpl) Update(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
 	categoryRequest := web.CategoryUpdateRequest{}
 	helper.ReadFromRequestBody(r, &categoryRequest)
 
@@ -55,7 +55,7 @@ func (c CategoryControllerImpl) Update(w http.ResponseWriter, r *http.Request, p
 	helper.WriteToResponseBody(w, response)
 }
 
-func (c CategoryControllerImpl) Delete(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+func (c *CategoryControllerImpl) Delete(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
 	categoryId := params.ByName("categoryId")
 	id, err := strconv.Atoi(categoryId)
 	helper.PanicIfError(err)
@@ -70,7 +70,7 @@ func (c CategoryControllerImpl) Delete(w http.ResponseWriter, r *http.Request, p
 	helper.WriteToResponseBody(w, response)
 }
 
-func (c CategoryControllerImpl) FindById(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+func (c *CategoryControllerImpl) FindById(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
 	categoryId := params.ByName("categoryId")
 	id, err := strconv.Atoi(categoryId)
 	helper.PanicIfError(err)
@@ -86,7 +86,7 @@ func (c CategoryControllerImpl) FindById(w http.ResponseWriter, r *http.Request,
 	helper.WriteToResponseBody(w, response)
 }
 
-func (c CategoryControllerImpl) FindAll(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
+func (c *CategoryControllerImpl) FindAll(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
 	categoryResponses := c.CategoryService.FindAll(r.Context())
 
 	response := web.WebResponse{

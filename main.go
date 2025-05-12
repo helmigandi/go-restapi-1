@@ -6,9 +6,9 @@ import (
 	"github.com/helmigandi/go-restapi-1/app"
 	"github.com/helmigandi/go-restapi-1/controller"
 	"github.com/helmigandi/go-restapi-1/helper"
+	"github.com/helmigandi/go-restapi-1/middleware"
 	"github.com/helmigandi/go-restapi-1/repository"
 	"github.com/helmigandi/go-restapi-1/service"
-	"github.com/julienschmidt/httprouter"
 	"net/http"
 )
 
@@ -18,18 +18,11 @@ func main() {
 	categoryRepository := repository.NewCategoryRepository()
 	categoryService := service.NewCategoryService(categoryRepository, db, validate)
 	categoryController := controller.NewCategoryController(categoryService)
-
-	router := httprouter.New()
-
-	router.GET("/api/categories", categoryController.FindAll)
-	router.GET("/api/categories/:categoryId", categoryController.FindById)
-	router.POST("/api/categories", categoryController.Create)
-	router.PUT("/api/categories/:categoryId", categoryController.Update)
-	router.DELETE("/api/categories/:categoryId", categoryController.Delete)
+	router := app.NewRouter(categoryController)
 
 	server := http.Server{
 		Addr:    "localhost:3000",
-		Handler: router,
+		Handler: middleware.NewAuthMiddleware(router),
 	}
 
 	err := server.ListenAndServe()

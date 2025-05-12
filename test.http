@@ -1,19 +1,22 @@
 ### GET all categories
 GET http://localhost:3000/api/categories
+X-API-Key: SuperSecretKey
 Accept: application/json
 
 ### Create category
 POST http://localhost:3000/api/categories
 Accept: application/json
 Content-Type: application/json
+X-API-Key: SuperSecretKey
 
 {
-  "name": "Bicycle"
+  "name": "Vehicle"
 }
 
 ### Get category by id
-GET http://localhost:3000/api/categories/2
+GET http://localhost:3000/api/categories/200
 Accept: application/json
+X-API-Key: SuperSecretKey
 
 ### Update category by id
 PUT http://localhost:3000/api/categories/3

@@ -6,14 +6,16 @@ Learn Go Rest API from Programmer Zaman Now
 
 - SQL Queries
 
-```sql
--- Create Table
+```bash
+mysql -h 127.0.0.1 -P 3306 -u root -p
+
+# Create Table
 create table category(
   id integer primary key auto_increment,
   name varchar(255) not null
 ) engine = InnoDB;
 
--- Select all categories
+# Select all categories
 select * from category;
 ```
 
